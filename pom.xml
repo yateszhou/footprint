@@ -9,6 +9,7 @@
     <module>footprint-core</module>
     <module>footprint-log4j</module>
     <module>footprint-demo</module>
+    <module>footprint-logback</module>
   </modules>
   
   <build>
