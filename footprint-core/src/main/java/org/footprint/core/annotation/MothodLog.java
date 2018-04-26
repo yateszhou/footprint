@@ -6,14 +6,17 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-/**
- * 忽略自动日志
- * @author yates zhou
- *
- */
-@Target({ElementType.METHOD, ElementType.TYPE})
+import org.springframework.core.annotation.AliasFor;
+
+@Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface IgnoreLog {
-
+public @interface MothodLog {
+	/**
+	 * 备注
+	 */
+	String comment() default "";
+	
+	@AliasFor("comment")
+	String value();
 }

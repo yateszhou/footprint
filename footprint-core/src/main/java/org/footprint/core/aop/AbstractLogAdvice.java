@@ -6,12 +6,17 @@ import java.util.Map;
 import org.footprint.core.Logger;
 
 public abstract class AbstractLogAdvice implements LogAdvice{
-	private Logger logger;
+	protected Logger logger;
 	
 	/**
 	 * 目标class
 	 */
 	private Class<?> targetClass;
 	
-	private Map<Method, String> methodPrefix;
+	/**
+	 * 缓存当前类的所有方法上的备注
+	 */
+	protected Map<Method, String> methodCommentMapping;
+	
+	
 }

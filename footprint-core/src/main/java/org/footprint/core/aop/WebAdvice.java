@@ -1,11 +1,19 @@
 package org.footprint.core.aop;
 
+import java.lang.reflect.Method;
+
 import org.aopalliance.intercept.MethodInvocation;
 
-public class WebAdvice implements LogAdvice{
+public class WebAdvice extends  AbstractLogAdvice{
 
 	@Override
-	public Object invoke(MethodInvocation arg0) throws Throwable {
+	public Object invoke(MethodInvocation invocation) throws Throwable {
+		Method method= invocation.getMethod();
+		
+		String comment= methodCommentMapping.get(method);
+		
+		
+		
 		System.out.println("测试"+11);
 		return null;
 	}

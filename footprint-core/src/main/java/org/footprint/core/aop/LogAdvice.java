@@ -9,6 +9,6 @@ import org.aopalliance.intercept.MethodInterceptor;
  */
 public interface LogAdvice extends MethodInterceptor{
 	
-	
+//	public 
 	
 }
