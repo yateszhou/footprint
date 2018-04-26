@@ -1,6 +1,10 @@
 package org.footprint.core.logging;
 
-public abstract class AbstractLogger {
+import org.footprint.core.Logger;
+
+public abstract class AbstractLogger implements Logger{
+	protected static String methodCallSign="->";
+	
 	/**
 	 * 简单class名称
 	 */
@@ -12,7 +16,15 @@ public abstract class AbstractLogger {
 	private String classPrint;
 	
 	
-	private ThreadLocal<String> methodLocal;
+	private ThreadLocal<String> methodName;
+	
+	private ThreadLocal<String> methodPrint;
+
+	@Override
+	public void setMethodLogInfo(String method, String methodCommont) {
+		
+		
+	}
 	
 	
 }
