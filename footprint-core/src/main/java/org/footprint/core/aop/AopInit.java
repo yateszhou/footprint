@@ -5,8 +5,16 @@ import org.springframework.aop.support.DefaultPointcutAdvisor;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.GenericBeanDefinition;
+import org.springframework.context.ApplicationContext;
 
 public class AopInit {
+	
+	public static void init(ApplicationContext context, BeanDefinitionRegistry registry) {
+		
+	}
+	
+	
+	
 	public void init(BeanDefinitionRegistry registry){
 		
 		AspectJExpressionPointcut expression = new AspectJExpressionPointcut();
