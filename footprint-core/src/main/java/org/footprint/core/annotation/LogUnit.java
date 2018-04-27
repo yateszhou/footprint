@@ -7,7 +7,6 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import org.footprint.core.Logger;
-import org.springframework.core.annotation.AliasFor;
 
 /**
  * 当前方法所有所有日志打印的前缀，该信息放在threadlocal里面，会有性能损耗
@@ -25,8 +24,7 @@ public @interface LogUnit {
 	
 	String[] group() default {Logger.DEFAULT_GROUP};
 
-	@AliasFor("comment")
-	String value();
+	String value() default "";
 
 
 }

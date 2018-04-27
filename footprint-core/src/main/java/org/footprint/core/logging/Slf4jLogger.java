@@ -1,10 +1,20 @@
 package org.footprint.core.logging;
 
-public class Slf4jLogger extends AbstractLogger {
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-	public Slf4jLogger(String className) {
-		super(className);
-		// TODO Auto-generated constructor stub
+public class Slf4jLogger extends AbstractLogger {
+	
+	private Logger logger;
+
+	public Slf4jLogger(String className, String classComment, String[] groups) {
+		super(className, classComment, groups);
+		logger= LoggerFactory.getLogger(className);
+		
 	}
 
+	
+	public void error(String msg) {
+		logger.error(this.classComment+ msg);
+	}
 }

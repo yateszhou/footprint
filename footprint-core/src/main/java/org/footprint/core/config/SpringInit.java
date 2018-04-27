@@ -7,12 +7,16 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor;
 import org.springframework.beans.factory.support.GenericBeanDefinition;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SpringBeanConfig implements BeanDefinitionRegistryPostProcessor{
+public class SpringInit implements ApplicationContextAware,  BeanDefinitionRegistryPostProcessor{
+	
+	private static ApplicationContext ctx= null;
 
-	public SpringBeanConfig() {
+	public SpringInit() {
 		System.out.print("start");
 	}
 	
@@ -35,6 +39,8 @@ public class SpringBeanConfig implements BeanDefinitionRegistryPostProcessor{
 		
 		new AopInit().init(registry);
 		
+		
+		
 //		ApplicationContext ctx= ApplicationContextUtil.getApplicationContext();
 //		boolean flag= true;
 //		if(flag) {
@@ -50,6 +56,11 @@ public class SpringBeanConfig implements BeanDefinitionRegistryPostProcessor{
 	    
 	    return bd;
 	 }
+
+	@Override
+	public void setApplicationContext(ApplicationContext context) throws BeansException {
+		ctx= context;
+	}
 	
 
 }

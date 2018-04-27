@@ -1,40 +1,58 @@
 package org.footprint.core.logging;
 
 import org.footprint.core.Logger;
-import org.footprint.core.annotation.LogUnit;
 
-public abstract class AbstractLogger implements Logger{
+public abstract class AbstractLogger implements Logger, ThreadLocalChanger{
 	protected static String methodCallSign="->";
 	
 	/**
 	 * 分组信息
 	 */
-	private String group;
+	protected String[] groups;
 	
 	/**
 	 * 简单class名称
 	 */
-	private String simpleClassName;
+	protected String simpleClassName;
 	
 	/**
 	 * 类打印信息
 	 */
-	private String classComment;
+	protected String classComment;
 	
 	
-	private ThreadLocal<ThreadLocalLogInfo> threadLocal;
+	protected ThreadLocal<ThreadLocalLogInfo> threadLocal;
 	
 	
 	
 	public AbstractLogger(String className) {
-		this.group= AbstractLogger.DEFAULT_GROUP;
+		this.groups = new String[]{AbstractLogger.DEFAULT_GROUP};
 		this.simpleClassName= className;
+		
 		
 //		LogUnit[] infos= clazz.getAnnotationsByType(LogUnit.class);
 //		if(infos.length> 0) {
 //			LogUnit info = infos[0];
 //			classComment= info.comment();
 //		}
+	}
+	
+
+	
+	public AbstractLogger(String className, String classComment) {
+		this.groups = new String[]{AbstractLogger.DEFAULT_GROUP};
+		this.simpleClassName= className;
+		this.classComment= classComment;
+	}
+	
+	public AbstractLogger(String className, String classComment, String[] groups) {
+		if(groups== null || groups.length== 0) {
+			this.groups = new String[]{AbstractLogger.DEFAULT_GROUP};
+		} else {
+			this.groups = groups;
+		}
+		this.simpleClassName= className;
+		this.classComment= classComment;
 	}
 
 
@@ -44,6 +62,7 @@ public abstract class AbstractLogger implements Logger{
 		
 		
 	}
+	
 	
 	
 }

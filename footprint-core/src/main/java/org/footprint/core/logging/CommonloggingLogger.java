@@ -7,4 +7,8 @@ public class CommonloggingLogger extends AbstractLogger{
 		super(className);
 	}
 
+	
+	public void error(String msg) {
+		
+	}
 }
