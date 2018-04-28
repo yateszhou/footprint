@@ -10,11 +10,11 @@ public class WebAdvice extends  AbstractLogAdvice{
 	public Object invoke(MethodInvocation invocation) throws Throwable {
 		Method method= invocation.getMethod();
 		
-		String comment= methodCommentMapping.get(method);
+//		String comment= methodCommentMapping.get(method);
 		
 		
 		
-		System.out.println("测试"+11);
+		System.out.println(method.getName());
 		return null;
 	}
 

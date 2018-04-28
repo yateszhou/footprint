@@ -15,7 +15,12 @@ public class SampleController {
 	
     @RequestMapping("/")
     String home() {
-    	logger.error("测试");
+//    	logger.error("测试");
+    	test();
         return "Hello World!";
+    }
+    
+    public void test(){
+    	logger.error("test方法");
     }
 }
