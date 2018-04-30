@@ -30,13 +30,13 @@ public class AopInit {
 	
 
 	public static void init(ApplicationContext context, BeanDefinitionRegistry registry) {
-//		initWeb(context, registry);
+		initWeb(context, registry);
 		
-				AspectJExpressionPointcut expression = new AspectJExpressionPointcut();
-				expression.setExpression("execution(* org.footprint.demo.controller.SampleController.*(..))");
-				// new DefaultPointcutAdvisor(expression, new WebAdvice());
-				registry.registerBeanDefinition("webLogAdvisor",
-						getDefinition(DefaultPointcutAdvisor.class, expression, new WebAdvice()));
+//				AspectJExpressionPointcut expression = new AspectJExpressionPointcut();
+//				expression.setExpression("execution(* org.footprint.demo.controller.SampleController.*(..))");
+//				// new DefaultPointcutAdvisor(expression, new WebAdvice());
+//				registry.registerBeanDefinition("webLogAdvisor",
+//						getDefinition(DefaultPointcutAdvisor.class, expression, new WebAdvice()));
 	}
 //
 //	public void init(BeanDefinitionRegistry registry) {
@@ -55,11 +55,12 @@ public class AopInit {
 	 * @param registry
 	 */
 	private static void initWeb(ApplicationContext context, BeanDefinitionRegistry registry) {
-		Map<String, Object> beanMap = context.getBeansWithAnnotation(Controller.class);
-		beanMap.putAll(context.getBeansWithAnnotation(RestController.class));
+		String[] beanNames= context.getBeanNamesForAnnotation(Controller.class);
 		
-		for(Map.Entry<String, Object> tmp: beanMap.entrySet()) {
-			Class<?> clazz= tmp.getValue().getClass();
+		
+		
+		for(String name: beanNames) {
+			Class<?> clazz= context.getType(name);;
 			AspectJExpressionPointcut expression = new AspectJExpressionPointcut();
 			expression.setExpression(getExpression(clazz));
 			
