@@ -1,7 +1,6 @@
 package org.footprint.core.aop;
 
 import java.text.MessageFormat;
-import java.util.Map;
 
 import org.springframework.aop.aspectj.AspectJExpressionPointcut;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RestController;
 
 public class AopInit {
 
@@ -38,16 +36,6 @@ public class AopInit {
 //				registry.registerBeanDefinition("webLogAdvisor",
 //						getDefinition(DefaultPointcutAdvisor.class, expression, new WebAdvice()));
 	}
-//
-//	public void init(BeanDefinitionRegistry registry) {
-//		AopConfigUtils.forceAutoProxyCreatorToUseClassProxying(registry);
-//
-//		AspectJExpressionPointcut expression = new AspectJExpressionPointcut();
-//		expression.setExpression("execution(* org.footprint.demo.controller.SampleController.*(..))");
-//		// new DefaultPointcutAdvisor(expression, new WebAdvice());
-//		registry.registerBeanDefinition("webLogAdvisor",
-//				this.getDefinition(DefaultPointcutAdvisor.class, expression, new WebAdvice()));
-//	}
 
 	/**
 	 * 初始化web的切面，目前扫描：@Controller，@RestController两个注解
@@ -65,7 +53,7 @@ public class AopInit {
 			expression.setExpression(getExpression(clazz));
 			
 			registry.registerBeanDefinition(SPRING_BEAN_PREFIX+ clazz.getSimpleName(),
-					getDefinition(DefaultPointcutAdvisor.class, expression, new WebAdvice()));
+					getDefinition(DefaultPointcutAdvisor.class, expression, new WebAdvice(clazz)));
 		}
 	}
 	

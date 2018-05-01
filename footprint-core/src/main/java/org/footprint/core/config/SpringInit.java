@@ -1,7 +1,5 @@
 package org.footprint.core.config;
 
-import javax.annotation.PostConstruct;
-
 import org.footprint.core.aop.AopInit;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
@@ -9,8 +7,6 @@ import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.context.ApplicationListener;
-import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -37,7 +33,6 @@ public class SpringInit implements ApplicationContextAware, BeanDefinitionRegist
 	@Override
 	public void setApplicationContext(ApplicationContext context) throws BeansException {
 		ctx= context;
-//		AopInit.init(ctx, registry);
 	}
 	
 

@@ -20,6 +20,13 @@ public class SampleController {
         return "Hello World!";
     }
     
+    @RequestMapping("/at")
+    String at() {
+//    	logger.error("测试");
+    	test();
+    	return "Hello World!";
+    }
+    
     public void test(){
     	logger.error("test方法");
     }

@@ -1,17 +1,18 @@
 package org.footprint.core;
 
-import org.footprint.core.annotation.LogUnit;
-import org.footprint.core.logging.Slf4jLogger;
+import org.footprint.core.logging.LoggerContext;
+
+
 
 public class LoggerFactory {
 	
-	/**
-	 * 加载的时候判断当前日志类型
-	 */
-	static {
-		
-	}
 	
+	/**
+	 * 获取logger，该方法会通过java执行上下文得到调用类的类型，
+	 * 然后执行相关操作，性能比较低，用于创建logger用，如果是获取
+	 * 已经创建好的logger，请使用getLogger(Class<?>)或者getLogger(String)方法
+	 * @return
+	 */
 	public static Logger getLogger(){
 		String className= "";
 		StackTraceElement[] array= (new Throwable()).getStackTrace();
@@ -25,43 +26,22 @@ public class LoggerFactory {
 			className= e.getClassName();
 			e.getClass();
 		}
-		Class<?> clazz = null;
-		try {
-			clazz = Class.forName(className);
-		} catch (ClassNotFoundException e1) {
-			throw new RuntimeException("无法加载类", e1);
-		}
-		
-		/*
-		 * 获取注解的comment和groups
-		 */
-		LogUnit[] infos= clazz.getAnnotationsByType(LogUnit.class);
-		String classComment= null;
-		String[] groups = null;
-		if(infos.length> 0) {
-			/*
-			 * 获取comment
-			 */
-			LogUnit info = infos[0];
-			classComment= info.comment();
-			if("".equals(classComment) || classComment== null) {
-				classComment= info.value();
-			}
-			
-			/*
-			 * 获取groups
-			 */
-			groups= info.group();
-		}
-		
-		Slf4jLogger logger= new Slf4jLogger(className, classComment, groups);
-		return logger;
+		return getContext().getLogger(className);
+	}
+	
+	public static Logger getLogger(Class<?> clazz){
+		return getContext().getLogger(clazz.getName());
+	}
+	
+	public static Logger getLogger(String clazzName){
+		return getContext().getLogger(clazzName);
 	}
 	
 	
-	public Logger getLogger(Class<?> group, String moduleName){
-		return null;
+	
+	private static LoggerContext getContext(){
+		return context;
 	}
 	
-	
+	private static LoggerContext context= new LoggerContext();
 }

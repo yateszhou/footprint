@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 import java.util.Map;
 
 import org.footprint.core.Logger;
+import org.footprint.core.LoggerFactory;
 
 public abstract class AbstractLogAdvice implements LogAdvice{
 	protected Logger logger;
@@ -18,5 +19,9 @@ public abstract class AbstractLogAdvice implements LogAdvice{
 	 */
 	protected Map<Method, String> methodCommentMapping;
 	
-	
+	public AbstractLogAdvice(Class<?> clazz){
+		this.targetClass= clazz;
+		
+//		logger= 
+	}
 }

@@ -6,6 +6,11 @@ import org.aopalliance.intercept.MethodInvocation;
 
 public class WebAdvice extends  AbstractLogAdvice{
 
+	public WebAdvice(Class<?> clazz) {
+		super(clazz);
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public Object invoke(MethodInvocation invocation) throws Throwable {
 		Method method= invocation.getMethod();
@@ -15,7 +20,8 @@ public class WebAdvice extends  AbstractLogAdvice{
 		
 		
 		System.out.println(method.getName());
-		return null;
+		Object rst= invocation.proceed();
+		return rst;
 	}
 
 	
