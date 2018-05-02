@@ -11,6 +11,7 @@ public class Slf4jLogger extends AbstractLogger {
 		super(className, classComment, groups);
 		logger= LoggerFactory.getLogger(className);
 		
+		
 	}
 
 	

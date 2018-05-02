@@ -11,7 +11,7 @@ import org.springframework.core.annotation.AliasFor;
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface MothodLog {
+public @interface MethodLog {
 	/**
 	 * 备注
 	 */

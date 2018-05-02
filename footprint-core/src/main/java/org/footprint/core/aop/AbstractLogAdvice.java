@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.footprint.core.Logger;
 import org.footprint.core.LoggerFactory;
+import org.footprint.core.annotation.MethodLog;
 
 public abstract class AbstractLogAdvice implements LogAdvice{
 	protected Logger logger;
@@ -12,7 +13,7 @@ public abstract class AbstractLogAdvice implements LogAdvice{
 	/**
 	 * 目标class
 	 */
-	private Class<?> targetClass;
+	protected Class<?> targetClass;
 	
 	/**
 	 * 缓存当前类的所有方法上的备注
@@ -21,7 +22,17 @@ public abstract class AbstractLogAdvice implements LogAdvice{
 	
 	public AbstractLogAdvice(Class<?> clazz){
 		this.targetClass= clazz;
+		this.logger= LoggerFactory.getLogger(clazz);
 		
-//		logger= 
+		Method[] methodArray= targetClass.getMethods();
+		
+		for(Method tmp: methodArray) {
+			
+			
+			MethodLog methodLog= tmp.getAnnotation(MethodLog.class);
+			if(methodLog!= null) {
+				
+			}
+		}
 	}
 }

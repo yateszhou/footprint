@@ -1,13 +1,13 @@
 package org.footprint.core.logging;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.footprint.core.Logger;
 import org.footprint.core.annotation.LogUnit;
 
 public class LoggerContext {
-	private Map<String, Logger> loggerCache= new HashMap<String, Logger>();
+	private Map<String, Logger> loggerCache= new ConcurrentHashMap<String, Logger>();
 	
 	public Logger getLogger(String className){
 		if(loggerCache.containsKey(className)) {
